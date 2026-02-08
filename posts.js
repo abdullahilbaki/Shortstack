@@ -5,7 +5,7 @@ const loadPost = () => {
       if (!res.ok) throw new Error("Network response was not ok");
       return res.json();
     })
-    .then((data) => displayPosts(data.posts)) // Pass just the array
+    .then((data) => displayPosts(data.posts)) 
     .catch((err) => console.error("Error fetching posts:", err));
 };
 
