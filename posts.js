@@ -1,12 +1,19 @@
-const loadPost = () => {
+const loadPost = async () => {
   const url = "https://dummyjson.com/posts";
-  fetch(url)
-    .then((res) => {
-      if (!res.ok) throw new Error("Network response was not ok");
-      return res.json();
-    })
-    .then((data) => displayPosts(data.posts)) 
-    .catch((err) => console.error("Error fetching posts:", err));
+
+  try {
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await res.json();
+
+    displayPosts(data.posts);
+  } catch (err) {
+    console.error("Error fetching posts:", err);
+  }
 };
 
 const displayPosts = (posts) => {
